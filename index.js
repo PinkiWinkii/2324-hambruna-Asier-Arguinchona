@@ -15,7 +15,7 @@ let allDonutsWithMostSugarString = retrieveAllDonutNames(donutsWithMostSugar, "a
 
 console.log(allDonutsWithMostSugarString);
 
-// 1.2- Donut con más Hierro
+// 1.2.- Donut con más Hierro
 
 let donutWithMostIron = findDonutWithMostIron(donutArray);
 
@@ -23,7 +23,7 @@ let allDonutsWithMostIronString = retrieveAllDonutNames(donutWithMostIron, "hier
 
 console.log(allDonutsWithMostIronString);
 
-// 1.3- Donut con más Proteína
+// 1.3.- Donut con más Proteína
 
 let donutWithMostProtein = findDonutWithMostProtein(donutArray);
 
@@ -31,6 +31,7 @@ let allDonutsWithMostProteinString = retrieveAllDonutNames(donutWithMostProtein,
 
 console.log(allDonutsWithMostProteinString);
 
+// 1.4.- Donut con menos Fibra
 
 
 
