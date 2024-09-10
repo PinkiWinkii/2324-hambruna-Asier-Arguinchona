@@ -1,20 +1,21 @@
 {
-  "name": "preludio---la-hambruna",
+  "name": "new-arrival",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PinkiWinkii/2324-hambruna-Asier-Arguinchona.git"
+    "url": "git+https://github.com/PinkiWinkii/cauldrons.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PinkiWinkii/2324-hambruna-Asier-Arguinchona/issues"
+    "url": "https://github.com/PinkiWinkii/cauldrons/issues"
   },
-  "homepage": "https://github.com/PinkiWinkii/2324-hambruna-Asier-Arguinchona#readme",
-  "keywords": [],
-  "description": ""
+  "homepage": "https://github.com/PinkiWinkii/cauldrons#readme"
 }

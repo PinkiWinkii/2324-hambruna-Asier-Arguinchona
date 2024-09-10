@@ -6,7 +6,7 @@ export const donutData = {
 				"name": "Hell Cake",
 				"ppu": 0.55,
 				"batters": {
-					"batter": [{
+				"batter": [{
 							"id": "1001",
 							"type": "Regular"
 						},
