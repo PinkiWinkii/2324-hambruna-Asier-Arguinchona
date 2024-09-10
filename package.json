@@ -1,0 +1,20 @@
+{
+  "name": "preludio---la-hambruna",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PinkiWinkii/2324-hambruna-Asier-Arguinchona.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PinkiWinkii/2324-hambruna-Asier-Arguinchona/issues"
+  },
+  "homepage": "https://github.com/PinkiWinkii/2324-hambruna-Asier-Arguinchona#readme",
+  "keywords": [],
+  "description": ""
+}
