@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/PinkiWinkii/cauldrons/issues"
   },
-  "homepage": "https://github.com/PinkiWinkii/cauldrons#readme"
+  "homepage": "https://github.com/PinkiWinkii/cauldrons#readme",
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
 }
