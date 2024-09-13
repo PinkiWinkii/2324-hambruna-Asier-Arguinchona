@@ -169,12 +169,8 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         
             console.log("El donut al que se le va a añadir el atributo se llama " + donutToChangeName2);
             console.log("");
-            console.log("Sus atributos ANTES del cambio se veían así: ");
-            console.log(JSON.stringify(oldDonut));  // Imprime el donut antes del cambio con formato
-        
-            console.log("");
-            console.log("Sus atributos DESPUÉS del cambio se ven así: ");
-            console.log(JSON.stringify(currentDonut));  // Imprime el donut después del cambio con formato
+            console.log("Si ahora buscamos el atributo Alergen nos dará el siguiente resultado: ");
+            console.log(JSON.stringify(currentDonut.Alergen));  // Imprime el donut después del cambio con formato
         }
 
 
@@ -220,11 +216,9 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
             donut.nutrition_facts.nutrition.vitamines = newArray;
 
             console.log("El donut al que se le va a añadir la vitamina se llama " + donutToChangeName);
-            console.log("Sus vitaminas ANTES del cambio se veían así: ");
-            console.log(JSON.stringify(oldArray));
 
-            console.log("Sus vitaminas DESPUÉS del cambio se ven así: ");
-            console.log(JSON.stringify(donut.nutrition_facts.nutrition.vitamines));
+            console.log("Si ahora buscamos la última vitamina añadida saldrá lo siguiente: ");
+            console.log(JSON.stringify(donut.nutrition_facts.nutrition.vitamines[donut.nutrition_facts.nutrition.vitamines.length-1]));
 
         }
 
