@@ -78,6 +78,115 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         console.log("");
         getAllDonutsData(donutArray, "vitamineAverage");
 
+        // 3.1 Listar cada donut con sus posibles masas (batters)
+        console.log("");
+        console.log("EJERCICIO 3");
+
+        getAllDonutsData2(donutArray, "batters");
+
+        // 3.2 Listar cada donut con sus posibles tipos de toppings
+
+        console.log("");
+        getAllDonutsData2(donutArray, "toppings");
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // EJERCICIO 3 FUNCTIONS
+
+        function getAllDonutsData2(donutsArray, dataToRetrieve)
+        {
+            for(let i = 0; i < donutsArray.length; i++)
+            {
+                const currentDonutName = donutsArray[i].name;
+
+                const currentDonutBatters = getCurrentDonutBatters(donutsArray[i]);
+                const currentDonutBattersString = getCurrentDonutBattersString(currentDonutBatters);
+
+                const currentDonutToppings = getCurrentDonutToppings(donutsArray[i]);
+                const currentDonutToppingsString = getCurrentDonutToppingsString(currentDonutToppings);
+
+                switch(dataToRetrieve)
+                {
+                    case "batters":
+                        console.log("El donut " + currentDonutName + " puede hacerse con los siguientes tipo de masa: " + currentDonutBattersString);
+                        break;
+                    
+                    case "toppings":
+                        console.log("El donut " + currentDonutName + " puede contener los siguientes toppings: " + currentDonutToppingsString);
+                        break;
+                }
+
+            }   
+        }
+
+        function getCurrentDonutBattersString(currentDonutBatters)
+        {
+            let totalBattersString = "";
+
+            for(let i = 0; i < currentDonutBatters.length; i++)
+            {
+                if(i === currentDonutBatters.length - 1){
+                    totalBattersString += "o el " + currentDonutBatters[i] + ".";
+                }
+                else if(i === currentDonutBatters.length - 2){
+                    totalBattersString += currentDonutBatters[i] + " ";
+                }        
+                else
+                {
+                    totalBattersString += currentDonutBatters[i] + ", ";
+                }    
+            }
+
+            return totalBattersString;
+        }
+
+        function getCurrentDonutToppingsString(currentDonutToppings)
+        {
+            let totalToppingString = "";
+
+            for(let i = 0; i < currentDonutToppings.length; i++)
+            {
+                if(i === currentDonutToppings.length - 1){
+                    totalToppingString += "o el " + currentDonutToppings[i] + ".";
+                }
+                else if(i === currentDonutToppings.length - 2){
+                    totalToppingString += currentDonutToppings[i] + " ";
+                }        
+                else
+                {
+                    totalToppingString += currentDonutToppings[i] + ", ";
+                }    
+            }
+
+            return totalToppingString;
+        }
+
+        function getCurrentDonutToppings(donutArray)
+        {
+            let toppingsArray = [];
+
+            for(let i = 0; i < donutArray.topping.length; i++)
+            {
+                const currentTopping = donutArray.topping[i].type;
+                toppingsArray.push(currentTopping);
+                
+            }   
+
+            return toppingsArray;
+        }
+
+        function getCurrentDonutBatters(donutArray)
+        {
+            let batterArray = [];
+
+            for(let i = 0; i < donutArray.batters.batter.length; i++)
+            {
+                const currentBatter = donutArray.batters.batter[i].type;
+                batterArray.push(currentBatter);
+                
+            }   
+
+            return batterArray;
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////
 
