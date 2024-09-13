@@ -88,6 +88,107 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         console.log("");
         getAllDonutsData2(donutArray, "toppings");
+
+        // 4.1 Mostrar cuantos donut de cada tipo puedo comprar y cuanto me sobraría
+
+        console.log("");
+        console.log("EJERCICIO 4: ");
+        let currentMoneyInSilver = 4;
+
+        console.log("Con " + currentMoneyInSilver + " monedas de plata se pueden comprar: ");
+
+        calculateHowManyDonutsCanBeBoughtAndReminder(donutArray, currentMoneyInSilver);
+
+        // 5.1 Donuts con el colesterol > 12 modificar sus grasas trans a 3.2gr
+
+        console.log("");
+        console.log("EJERCICIO 5: ");
+
+        const fatChangeColesterolVariable = 12;
+        const fatChange = 3.2;
+
+        changeJSONFatAttributes(donutArray, fatChange, fatChangeColesterolVariable);
+
+        // 5.2 Donuts con azucar > 50g modificar sus carbohidratos a 42gx
+
+        const carbChange = 42;
+        const carbChangeSugarVariable = 50;
+
+        changeJSONCarbAttributes(donutArray, carbChange, carbChangeSugarVariable)
+
+        const vitaminChange = {type: "Nitacina", percent: "0%"};
+        const newDailyValue = 53;
+        const newAttribute = {Alergen: "Gluten Free"};
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // EJERCICIO 5 FUNCTIONS
+
+        function changeJSONCarbAttributes(donutsArray, carbChange, carbChangeSugarVariable)
+        {
+            let newDonutsArray = donutsArray;
+
+            for(let i = 0; i < newDonutsArray.length; i++)
+            {
+                const currentDonut = newDonutsArray[i];
+                const currentDonutSugar = parseInt(newDonutsArray[i].nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars);
+
+                if(currentDonutSugar > carbChangeSugarVariable)
+                {
+                    changeDonutCarb(currentDonut, carbChange, currentDonutSugar);
+                }
+            }   
+        }
+
+        changeDonutCarb(currentDonut, carbChange, currentDonutSugar)
+        {
+            const currentDonutCarbs = currentDonut.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount;
+        }
+
+        function changeJSONFatAttributes(donutsArray, fatChange, fatChangeColesterolVariable)
+        {
+            let newDonutsArray = donutsArray;
+
+            for(let i = 0; i < newDonutsArray.length; i++)
+            {
+                const currentDonut = newDonutsArray[i];
+                const currentDonutColesterol =  parseInt(newDonutsArray[i].nutrition_facts.nutrition.cholesterol.amount);
+
+                if(currentDonutColesterol > fatChangeColesterolVariable)
+                {
+                    changeTransFat(currentDonut, fatChange, currentDonutColesterol);
+                }
+            }   
+        }
+
+        function changeTransFat(donut, numberToChange, currentDonutColesterol)
+        {
+            const currentDonutTransFat = donut.nutrition_facts.nutrition.fat.fat_type.trans;
+            donut.nutrition_facts.nutrition.fat.fat_type.trans = numberToChange.toString() + "g";
+            console.log("El donut " + donut.name + " tiene el colesterol de " + currentDonutColesterol + " el cual es más alto que 12. Sus grasas trans antes de cambiarlas eran: " +
+            currentDonutTransFat + " y después de cambiarlas son: " + donut.nutrition_facts.nutrition.fat.fat_type.trans + ".");
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // EJERCICIO 4 FUNCTIONS
+
+        function calculateHowManyDonutsCanBeBoughtAndReminder(donutsArray, ownedMoneyInSilver)
+        {
+            for(let i = 0; i < donutsArray.length; i++)
+            {
+                const currentDonutName = donutsArray[i].name;
+                const currentDonutUnitPrice = donutsArray[i].ppu;
+                const boughtableDonutAmount = Math.floor(ownedMoneyInSilver/currentDonutUnitPrice);
+                const reminder = (ownedMoneyInSilver % currentDonutUnitPrice).toFixed(2);
+
+                console.log(boughtableDonutAmount + " dónuts " + currentDonutName + " y nos sobrarían " + reminder + " monedas de plata (" + reminder*100 + " monedas de bronce).");
+            }   
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////
 
         // EJERCICIO 3 FUNCTIONS
@@ -212,6 +313,8 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
                 totalCalories += parseInt(currentDonutCalories);
                 totalGrasasSaturadas += parseInt(currentGrasasSaturadas);
+
+                //const currentDonutVitamineNamesAnd = getCurrentDonutVitamineNames(donutsArray[i]);
 
                 const currentTotalVitamineA = donutsArray[i].nutrition_facts.nutrition.vitamines[0].percent;
                 const currentTotalVitamineC = donutsArray[i].nutrition_facts.nutrition.vitamines[1].percent;
@@ -469,3 +572,4 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
             }
         }
     }
+
