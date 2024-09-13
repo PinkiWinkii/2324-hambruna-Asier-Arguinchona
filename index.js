@@ -419,10 +419,10 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
                 const currenTotalCalcium = donutsArray[i].nutrition_facts.nutrition.vitamines[2].percent;
                 const currenTotalIron = donutsArray[i].nutrition_facts.nutrition.vitamines[3].percent;
                 
-                totalVitamineA += parseInt(currentTotalVitamineA);
-                totalVitamineC += parseInt(currentTotalVitamineC);
-                totalCalcium += parseInt(currenTotalCalcium);
-                totalIron += parseInt(currenTotalIron);
+                totalVitamineA += parseFloat(currentTotalVitamineA);
+                totalVitamineC += parseFloat(currentTotalVitamineC);
+                totalCalcium += parseFloat(currenTotalCalcium);
+                totalIron += parseFloat(currenTotalIron);
 
                 switch(dataToRetrieve)
                 {
