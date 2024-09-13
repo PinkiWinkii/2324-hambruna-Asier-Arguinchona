@@ -110,7 +110,7 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         changeJSONFatAttributes(donutArray, fatChange, fatChangeColesterolVariable);
 
         // 5.2 Donuts con azucar > 50g modificar sus carbohidratos a 42gx
-
+        console.log("");
         const carbChange = 42;
         const carbChangeSugarVariable = 50;
 
@@ -119,9 +119,6 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         const vitaminChange = {type: "Nitacina", percent: "0%"};
         const newDailyValue = 53;
         const newAttribute = {Alergen: "Gluten Free"};
-
-
-
 
         ////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,14 +135,17 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
                 if(currentDonutSugar > carbChangeSugarVariable)
                 {
-                    changeDonutCarb(currentDonut, carbChange, currentDonutSugar);
+                    changeDonutCarb(currentDonut, carbChange, currentDonutSugar, carbChangeSugarVariable);
                 }
             }   
         }
 
-        changeDonutCarb(currentDonut, carbChange, currentDonutSugar)
+        function changeDonutCarb(currentDonut, carbChange, currentDonutSugar, carbChangeSugarVariable)
         {
             const currentDonutCarbs = currentDonut.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount;
+            currentDonut.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount = carbChange.toString() + "g";
+            console.log("El donut " + currentDonut.name + " tiene el azucar de " + currentDonutSugar + " el cual es más alto que " + carbChangeSugarVariable + 
+            ". Sus carbohidratos antes de cambiarlos eran de " + currentDonutCarbs + " y despues de cambiarlas son de: " + currentDonut.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount + ".");
         }
 
         function changeJSONFatAttributes(donutsArray, fatChange, fatChangeColesterolVariable)
@@ -159,7 +159,7 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
                 if(currentDonutColesterol > fatChangeColesterolVariable)
                 {
-                    changeTransFat(currentDonut, fatChange, currentDonutColesterol);
+                    changeTransFat(currentDonut, fatChange, currentDonutColesterol, fatChangeColesterolVariable);
                 }
             }   
         }
@@ -168,7 +168,7 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         {
             const currentDonutTransFat = donut.nutrition_facts.nutrition.fat.fat_type.trans;
             donut.nutrition_facts.nutrition.fat.fat_type.trans = numberToChange.toString() + "g";
-            console.log("El donut " + donut.name + " tiene el colesterol de " + currentDonutColesterol + " el cual es más alto que 12. Sus grasas trans antes de cambiarlas eran: " +
+            console.log("El donut " + donut.name + " tiene el colesterol de " + currentDonutColesterol + " el cual es más alto que " + fatChangeColesterolVariable + ". Sus grasas trans antes de cambiarlas eran: " +
             currentDonutTransFat + " y después de cambiarlas son: " + donut.nutrition_facts.nutrition.fat.fat_type.trans + ".");
         }
 
