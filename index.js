@@ -55,8 +55,6 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
             for(let i = 0; i < donutsArray.length; i++)
             {
                 const currentDonutFiber = parseInt(donutsArray[i].nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre);
-    
-                console.log(currentDonutFiber);
 
                 if(currentDonutFiber < maxFiber)
                 {
