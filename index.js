@@ -132,6 +132,52 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         changeJSONDailyValueAttributes(donutArray, newDailyValue);
 
+        // 5.5 Crear un nuevo atributo Alergen al donut Relaxing Alchemy y que dentro ponga Gluten Free
+
+        console.log("");
+        const newAttribute = "Gluten Free";
+        const donutToChangeName2 = "Relaxing Alchemy";
+
+        changeJSONDonutGeneralAttributes(donutArray, newAttribute, donutToChangeName2);
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        
+        // EJERCICIO 5 FUNCTIONS
+
+        function changeJSONDonutGeneralAttributes(donutsArray, attributeChange, donutToChangeName2)
+        {
+            let newDonutsArray = donutsArray;
+
+            for(let i = 0; i < newDonutsArray.length; i++)
+            {
+                const currentDonutName = newDonutsArray[i].name;
+                const currentDonut = newDonutsArray[i];
+                
+                if(currentDonutName === donutToChangeName2)
+                {
+                    addAttributeToDonut(currentDonut, attributeChange, donutToChangeName2);
+                }
+            }   
+        }
+
+        function addAttributeToDonut(currentDonut, attributeChange, donutToChangeName2) {
+            // Hacemos una copia del donut actual antes de realizar cambios
+            let oldDonut = JSON.parse(JSON.stringify(currentDonut));
+        
+            // Realizamos el cambio en el donut actual
+            currentDonut.Alergen = attributeChange;
+        
+            console.log("El donut al que se le va a añadir el atributo se llama " + donutToChangeName2);
+            console.log("");
+            console.log("Sus atributos ANTES del cambio se veían así: ");
+            console.log(JSON.stringify(oldDonut));  // Imprime el donut antes del cambio con formato
+        
+            console.log("");
+            console.log("Sus atributos DESPUÉS del cambio se ven así: ");
+            console.log(JSON.stringify(currentDonut));  // Imprime el donut después del cambio con formato
+        }
+
+
         function changeJSONDailyValueAttributes(donutsArray, newDailyValue)
         {
             let newDonutsArray = donutsArray;
@@ -149,12 +195,6 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
                 );
             }   
         }
-
-        const newAttribute = {Alergen: "Gluten Free"};
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        
-        // EJERCICIO 5 FUNCTIONS
 
         function changeJSONVitamineAttributes(donutsArray, vitamineChange, donutToChangeName)
         {
