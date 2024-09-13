@@ -109,20 +109,60 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         changeJSONFatAttributes(donutArray, fatChange, fatChangeColesterolVariable);
 
-        // 5.2 Donuts con azucar > 50g modificar sus carbohidratos a 42gx
+        // 5.2 Donuts con azucar > 50g modificar sus carbohidratos a 42g
+
         console.log("");
         const carbChange = 42;
         const carbChangeSugarVariable = 50;
 
         changeJSONCarbAttributes(donutArray, carbChange, carbChangeSugarVariable)
 
-        const vitaminChange = {type: "Nitacina", percent: "0%"};
+        // 5.3 Donuts llamados Magic Fusion añadirles vitamina Nitacina
+
+        console.log("");
+        const vitamineChange = {type: "Nitacina", percent: "0%"};
+        const donutToChangeName = "Magic Fusion";
+
+        changeJSONVitamineAttributes(donutArray, vitamineChange, donutToChangeName)
+
         const newDailyValue = 53;
         const newAttribute = {Alergen: "Gluten Free"};
 
         ////////////////////////////////////////////////////////////////////////////////////
-
+        
         // EJERCICIO 5 FUNCTIONS
+
+        function changeJSONVitamineAttributes(donutsArray, vitamineChange, donutToChangeName)
+        {
+            let newDonutsArray = donutsArray;
+
+            for(let i = 0; i < newDonutsArray.length; i++)
+            {
+                const currentDonutName = newDonutsArray[i].name;
+                const currentDonut = newDonutsArray[i];
+
+                if(currentDonutName === donutToChangeName)
+                {
+                    addVitamineToDonut(currentDonut, vitamineChange, donutToChangeName);
+                }
+            }   
+        }
+
+        function addVitamineToDonut(donut, vitamineChange, donutToChangeName)
+        {
+            let oldArray = donut.nutrition_facts.nutrition.vitamines;
+            let newArray = [...donut.nutrition_facts.nutrition.vitamines, vitamineChange];
+
+            donut.nutrition_facts.nutrition.vitamines = newArray;
+
+            console.log("El donut al que se le va a añadir la vitamina se llama " + donutToChangeName);
+            console.log("Sus vitaminas ANTES del cambio se veían así: ");
+            console.log(JSON.stringify(oldArray));
+
+            console.log("Sus vitaminas DESPUÉS del cambio se ven así: ");
+            console.log(JSON.stringify(donut.nutrition_facts.nutrition.vitamines));
+
+        }
 
         function changeJSONCarbAttributes(donutsArray, carbChange, carbChangeSugarVariable)
         {
