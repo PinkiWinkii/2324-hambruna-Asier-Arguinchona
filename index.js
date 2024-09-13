@@ -82,12 +82,12 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         console.log("");
         console.log("EJERCICIO 3");
 
-        getAllDonutsData2(donutArray, "batters");
+        getAllDonutsBatterAndToppingData(donutArray, "batters");
 
         // 3.2 Listar cada donut con sus posibles tipos de toppings
 
         console.log("");
-        getAllDonutsData2(donutArray, "toppings");
+        getAllDonutsBatterAndToppingData(donutArray, "toppings");
 
         // 4.1 Mostrar cuantos donut de cada tipo puedo comprar y cuanto me sobraría
 
@@ -125,7 +125,31 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         changeJSONVitamineAttributes(donutArray, vitamineChange, donutToChangeName)
 
+        // 5.4 Todos los donut tendrán un daily value de 53%
+
+        console.log("");
         const newDailyValue = 53;
+
+        changeJSONDailyValueAttributes(donutArray, newDailyValue);
+
+        function changeJSONDailyValueAttributes(donutsArray, newDailyValue)
+        {
+            let newDonutsArray = donutsArray;
+
+            for(let i = 0; i < newDonutsArray.length; i++)
+            {
+                const currentDonutName = newDonutsArray[i].name;
+                let oldDonutDailyValue = newDonutsArray[i].nutrition_facts.nutrition.carbohydrate.daily_value;
+                let updatedDailyValue = newDailyValue + "%";
+
+                donutsArray[i].nutrition_facts.nutrition.carbohydrate.daily_value = updatedDailyValue;
+
+                console.log("El donut " + currentDonutName + " tenía un daily value de carbohidratos de " + oldDonutDailyValue + "." + 
+                    " Ahora tiene un valor de " + donutsArray[i].nutrition_facts.nutrition.carbohydrate.daily_value + "."
+                );
+            }   
+        }
+
         const newAttribute = {Alergen: "Gluten Free"};
 
         ////////////////////////////////////////////////////////////////////////////////////
@@ -233,7 +257,7 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         // EJERCICIO 3 FUNCTIONS
 
-        function getAllDonutsData2(donutsArray, dataToRetrieve)
+        function getAllDonutsBatterAndToppingData(donutsArray, dataToRetrieve)
         {
             for(let i = 0; i < donutsArray.length; i++)
             {
