@@ -68,6 +68,17 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         getAllDonutsData(donutArray, "caloriesAverage");
 
+        // 2.4 Suma de todas las grasas saturadas
+
+        console.log("");
+        getAllDonutsData(donutArray, "grasasSaturadasTotal");
+
+        // 2.5 El porcentaje medio de cada vitamina
+
+        console.log("");
+        getAllDonutsData(donutArray, "vitamineAverage");
+
+
         ////////////////////////////////////////////////////////////////////////////////////
 
         // EJERCICIO 2 FUNCTIONS
@@ -76,13 +87,32 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         {
 
             let totalCalories = 0;
+            let totalGrasasSaturadas = 0;
+
+            let totalVitamineA = 0;
+            let totalVitamineC = 0;
+            let totalCalcium = 0;
+            let totalIron = 0;
 
             for(let i = 0; i < donutsArray.length; i++)
             {
                 const currentDonutName = donutsArray[i].name;
                 const currentDonutCalories = donutsArray[i].nutrition_facts.nutrition.calories;
-                const currentDonutCarbohydrates = donutsArray[i].nutrition_facts.nutrition.carbohydrate;    
+                const currentDonutCarbohydrates = donutsArray[i].nutrition_facts.nutrition.carbohydrate;   
+                const currentGrasasSaturadas = donutsArray[i].nutrition_facts.nutrition.fat.fat_type.saturated;
+
                 totalCalories += parseInt(currentDonutCalories);
+                totalGrasasSaturadas += parseInt(currentGrasasSaturadas);
+
+                const currentTotalVitamineA = donutsArray[i].nutrition_facts.nutrition.vitamines[0].percent;
+                const currentTotalVitamineC = donutsArray[i].nutrition_facts.nutrition.vitamines[1].percent;
+                const currenTotalCalcium = donutsArray[i].nutrition_facts.nutrition.vitamines[2].percent;
+                const currenTotalIron = donutsArray[i].nutrition_facts.nutrition.vitamines[3].percent;
+                
+                totalVitamineA += parseInt(currentTotalVitamineA);
+                totalVitamineC += parseInt(currentTotalVitamineC);
+                totalCalcium += parseInt(currenTotalCalcium);
+                totalIron += parseInt(currenTotalIron);
 
                 switch(dataToRetrieve)
                 {
@@ -101,6 +131,25 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
                         if(i === donutsArray.length - 1)
                         {
                             console.log("La media de calorías de todos los donuts es de " + totalCalories/donutsArray.length + "g.");
+                        }
+                        break;
+
+                    case "grasasSaturadasTotal":
+                        if(i === donutsArray.length - 1)
+                        {
+                            console.log("El total de las grasas saturadas de todos los donuts es de " + totalGrasasSaturadas + "g.");
+                        }
+                        break;
+
+                    case "vitamineAverage":
+                        {
+                            if(i === donutsArray.length - 1)
+                            {
+                                console.log("La media de la vitamina A es de " + (totalVitamineA/donutsArray.length).toFixed(2) + "%.");
+                                console.log("La media de la vitamina C es de " + (totalVitamineC/donutsArray.length).toFixed(2) + "%.");
+                                console.log("La media del Calcio es de " + (totalCalcium/donutsArray.length).toFixed(2) + "%.");
+                                console.log("La media del Hierro es de " + (totalIron/donutsArray.length).toFixed(2) + "%.");
+                            }
                         }
                         break;
                 }
