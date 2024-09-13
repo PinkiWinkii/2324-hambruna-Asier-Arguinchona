@@ -44,7 +44,18 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         console.log(allDonutsWithLeastFiberString);
 
+
+        // 2.1 Listar los donuts y sus calorias
+
+        let donutsWithCalories = getAllDonutsAndCalories(donutArray);
+        
         ////////////////////////////////////////////////////////////////////////////////////
+
+        // EJERCICIO 2 FUNCTIONS
+
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // EJERCICIO 1 FUNCTIONS
 
         function findDonutWithLeastFiber(donutsArray)
         {
