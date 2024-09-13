@@ -14,6 +14,8 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
     
         // 1.1.- Donut con más Azúcar:
     
+        console.log("EJERCICIO 1: ");    
+
         let donutsWithMostSugar = findDonutWithMostSugar(donutArray);
     
         let allDonutsWithMostSugarString = retrieveAllDonutNames(donutsWithMostSugar, "azúcar", true);
@@ -44,14 +46,69 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
 
         console.log(allDonutsWithLeastFiberString);
 
+        console.log("");    
 
         // 2.1 Listar los donuts y sus calorias
 
-        let donutsWithCalories = getAllDonutsAndCalories(donutArray);
+        console.log("EJERCICIO 2: ");    
+        console.log("Mostramos los donuts y sus calorias correspondientes: ");       
+
+        getAllDonutsData(donutArray, "calories");
         
+        // 2.2 Listar los donuts y sus calorias
+        
+        console.log("");
+        console.log("Mostramos los donuts y sus datos de carbohidratos correspondientes: ");     
+
+        getAllDonutsData(donutArray, "carbs");
+
+        // 2.3 La media de calorias de todos los donuts
+
+        console.log("");
+
+        getAllDonutsData(donutArray, "caloriesAverage");
+
         ////////////////////////////////////////////////////////////////////////////////////
 
         // EJERCICIO 2 FUNCTIONS
+
+        function getAllDonutsData(donutsArray, dataToRetrieve)
+        {
+
+            let totalCalories = 0;
+
+            for(let i = 0; i < donutsArray.length; i++)
+            {
+                const currentDonutName = donutsArray[i].name;
+                const currentDonutCalories = donutsArray[i].nutrition_facts.nutrition.calories;
+                const currentDonutCarbohydrates = donutsArray[i].nutrition_facts.nutrition.carbohydrate;    
+                totalCalories += parseInt(currentDonutCalories);
+
+                switch(dataToRetrieve)
+                {
+                    case "calories":
+                        console.log("El dónut " + currentDonutName + " tiene " + currentDonutCalories + " calorías");
+                        break;
+                    
+                    case "carbs":
+                        console.log("El dónut " + currentDonutName + " tiene " + currentDonutCarbohydrates.carbs_detail.amount + 
+                        " de carbohidratos, de los cuales " + currentDonutCarbohydrates.carbs_detail.type.fibre + " son fibra y " +
+                        currentDonutCarbohydrates.carbs_detail.type.sugars + " son azćares, conteniendo este dónut un valor de ingesta " + 
+                        "diaría recomendada de estos carbohidratos de un " + currentDonutCarbohydrates.daily_value);
+                        break;
+
+                    case "caloriesAverage":
+                        if(i === donutsArray.length - 1)
+                        {
+                            console.log("La media de calorías de todos los donuts es de " + totalCalories/donutsArray.length + "g.");
+                        }
+                        break;
+                }
+               
+
+            }
+    
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////
 
@@ -219,11 +276,11 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
     
             if(donutNames.length > 1)
             {
-                allNamesString += "Los donut con " + masOMenos + " " + atributeName + " son el "
+                allNamesString += "Los dónuts con " + masOMenos + " " + atributeName + " son el "
             }
             else
             {
-                allNamesString += "El donut con " + masOMenos + " " + atributeName + " es el " + donutNames[0];
+                allNamesString += "El dónut con " + masOMenos + " " + atributeName + " es el " + donutNames[0];
                 return allNamesString + ".";
             }
     
