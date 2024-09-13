@@ -38,7 +38,47 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
     
         // 1.4.- Donut con menos Fibra
     
+        let donutWithLessFiber = findDonutWithLeastFiber(donutArray);
+        
+        let allDonutsWithLeastFiberString = retrieveAllDonutNames(donutWithLessFiber, "fibra", false);
+
+        console.log(allDonutsWithLeastFiberString);
+
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        function findDonutWithLeastFiber(donutsArray)
+        {
+            let maxFiber = parseInt(donutsArray[0].nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre);
+            let maxFiberDonutID = 0;
+            let donutNameArray = [];
     
+            for(let i = 0; i < donutsArray.length; i++)
+            {
+                const currentDonutFiber = parseInt(donutsArray[i].nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre);
+    
+                console.log(currentDonutFiber);
+
+                if(currentDonutFiber < maxFiber)
+                {
+                    maxFiber = currentDonutSugar;
+                    maxFiberDonutID = donutsArray[i].id;
+                    donutNameArray = [];
+                    let donutWithLeastFiber = findDonutNameByID(donutsArray, maxFiberDonutID);
+                    donutNameArray.push(donutWithLeastFiber);
+                }
+                else if(currentDonutFiber === maxFiber)
+                {
+                    maxFiber = currentDonutFiber;
+                    maxFiberDonutID = donutsArray[i].id;
+                    let donutWithLeastFiber = findDonutNameByID(donutsArray, maxFiberDonutID);
+                    donutNameArray.push(donutWithLeastFiber);
+                }
+    
+            }
+    
+            return donutNameArray;
+        }
+
         function findDonutWithMostSugar(donutsArray)
         {
             let maxSugar = 0;
@@ -166,15 +206,16 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
         function retrieveAllDonutNames(donutNames, atributeName, isMore)
         {
             let allNamesString = "";
+            let masOMenos = isMore ? "más" : "menos";
     
             if(donutNames.length > 1)
             {
-                allNamesString += "Los donut con más " + atributeName + " son el "
+                allNamesString += "Los donut con " + masOMenos + " " + atributeName + " son el "
             }
             else
             {
-                allNamesString += "El donut con más " + atributeName + " es el " + donutNames[0];
-                return allNamesString;
+                allNamesString += "El donut con " + masOMenos + " " + atributeName + " es el " + donutNames[0];
+                return allNamesString + ".";
             }
     
             for(let i = 0; i < donutNames.length; i++)
@@ -190,7 +231,7 @@ fetch('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb29242
                 allNamesString += donutNames[i];
             }
     
-            return allNamesString;
+            return allNamesString + ".";
         }
     
         function findDonutNameByID(donutsArray, donutID)
